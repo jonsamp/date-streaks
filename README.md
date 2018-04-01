@@ -161,3 +161,11 @@ Tests require `mocha` to be installed globally. In the parent of the package, ru
 ```bash
 npm run test
 ```
+
+## Authors
+
+* Jon Samp
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.

@@ -8,16 +8,13 @@
     "build": "babel src --presets babel-preset-env --out-dir dist",
     "prepublish": "npm run build"
   },
-  "keywords": [
-    "streak",
-    "streaks",
-    "date",
-    "days",
-    "dates",
-    "day"
-  ],
+  "keywords": ["streak", "streaks", "date", "days", "dates", "day"],
   "author": "Jon Samp",
   "license": "ISC",
+  "repository": "https://github.com/jonsamp/date-streaks",
+  "bugs": {
+    "url": "https://github.com/jonsamp/date-streaks/issues"
+  },
   "dependencies": {
     "moment": "2.21.0"
   },
