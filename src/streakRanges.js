@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { sortDates } from './helpers';
 import summary from './summary';
 
 function streakRanges({ dates = [] }) {
@@ -6,8 +7,8 @@ function streakRanges({ dates = [] }) {
     return [];
   }
 
-  const { streaks = [] } = summary({dates});
-  const allDates = [...dates];
+  const { streaks = [] } = summary({ dates });
+  const allDates = [...sortDates(dates)];
 
   return streaks
     .reduce((acc, streak) => {
