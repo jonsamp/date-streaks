@@ -38,6 +38,25 @@ describe('Date Streaks', () => {
       expect(resultWithToday.todayInStreak).to.equal(false);
       expect(resultWithToday.withinCurrentStreak).to.equal(true);
     });
+
+    it('should report a streak longer than 10 days', () => {
+      var longStreak = summary({
+        dates: [
+          new Date('08/19/2018'),
+          new Date('08/18/2018'),
+          new Date('08/17/2018'),
+          new Date('08/16/2018'),
+          new Date('08/15/2018'),
+          new Date('08/14/2018'),
+          new Date('08/13/2018'),
+          new Date('08/12/2018'),
+          new Date('08/11/2018'),
+          new Date('08/10/2018'),
+          new Date('08/09/2018')
+        ]
+      });
+      expect(longStreak.longestStreak).to.equal(11);
+    });
   });
 
   describe('Track record', () => {

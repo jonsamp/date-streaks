@@ -17,5 +17,13 @@ export const filterInvalidDates = dates =>
         : moment(date)
   );
 
-export const sortDates = dates =>
-  dates.sort((a, b) => (moment(b).diff(moment(a)) > 0 ? 0 : 1));
+export const sortDates = dates => {
+  return dates
+    .sort(function(a, b) {
+      return (
+        moment(moment(b).startOf('day')).format('X') -
+        moment(moment(a).startOf('day')).format('X')
+      );
+    })
+    .reverse();
+};
