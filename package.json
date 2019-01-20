@@ -4,7 +4,7 @@
   "description": "Find a variety of streak metrics from a list of dates.",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "mocha test/index.js",
+    "test": "npm run build && mocha test/index.js",
     "build": "babel src --presets babel-preset-env --out-dir dist",
     "prepublish": "npm run build"
   },
