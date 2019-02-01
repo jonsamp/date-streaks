@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export const relativeDates = {
+export const relativeDates = () => ({
   today: moment().startOf("day"),
   yesterday: moment()
     .subtract(1, "days")
@@ -8,7 +8,7 @@ export const relativeDates = {
   tomorrow: moment()
     .add(1, "days")
     .startOf("day")
-};
+});
 
 export const filterInvalidDates = dates =>
   dates.filter(date =>
