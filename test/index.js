@@ -1,4 +1,4 @@
-var moment = require('moment');
+var { startOfDay, subDays, addDays } = require('date-fns');
 var expect = require('chai').expect;
 var summary = require('../dist/summary').default;
 var trackRecord = require('../dist/trackRecord').default;
@@ -7,9 +7,7 @@ var streakRanges = require('../dist/streakRanges').default;
 describe('Date Streaks', () => {
   describe('Summary', () => {
     it('should report a summary of streaks', () => {
-      var today = moment()
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
       var result = summary({
         dates: [
           new Date(today),
@@ -28,12 +26,10 @@ describe('Date Streaks', () => {
     });
 
     it('should report withinCurrentStreak when yesterday is true', () => {
-      var yesterday = moment()
-        .subtract(1, 'days')
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
+      var yesterday = subDays(today, 1);
       var result = summary({
-        dates: [new Date(yesterday)],
+        dates: [yesterday],
       });
       expect(result.currentStreak).to.equal(1);
       expect(result.longestStreak).to.equal(1);
@@ -42,19 +38,11 @@ describe('Date Streaks', () => {
     });
 
     it('should report withinCurrentStreak when tomorrow is true', () => {
-      var today = moment()
-        .startOf('day')
-        .toString();
-      var tomorrow = moment()
-        .add(1, 'days')
-        .startOf('day')
-        .toString();
-      var yesterday = moment()
-        .subtract(1, 'days')
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
+      var tomorrow = addDays(today, 1);
+      var yesterday = subDays(today, 1);
       var result = summary({
-        dates: [new Date(yesterday), new Date(today), new Date(tomorrow)],
+        dates: [yesterday, today, tomorrow],
       });
       expect(result.currentStreak).to.equal(3);
       expect(result.longestStreak).to.equal(3);
@@ -63,19 +51,11 @@ describe('Date Streaks', () => {
     });
 
     it('should report withinCurrentStreak when future unconnected dates are reported', () => {
-      var today = moment()
-        .startOf('day')
-        .toString();
-      var futureDate = moment()
-        .add(3, 'days')
-        .startOf('day')
-        .toString();
-      var yesterday = moment()
-        .subtract(1, 'days')
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
+      var futureDate = addDays(today, 3);
+      var yesterday = subDays(today, 1);
       var result = summary({
-        dates: [new Date(yesterday), new Date(today), new Date(futureDate)],
+        dates: [yesterday, today, futureDate],
       });
       expect(result.currentStreak).to.equal(1);
       expect(result.longestStreak).to.equal(2);
@@ -84,16 +64,11 @@ describe('Date Streaks', () => {
     });
 
     it('should report todayInStreak false', () => {
-      var futureDate = moment()
-        .add(3, 'days')
-        .startOf('day')
-        .toString();
-      var yesterday = moment()
-        .subtract(1, 'days')
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
+      var futureDate = addDays(today, 3);
+      var yesterday = subDays(today, 1);
       var result = summary({
-        dates: [new Date(yesterday), new Date(futureDate)],
+        dates: [yesterday, futureDate],
       });
       expect(result.currentStreak).to.equal(1);
       expect(result.longestStreak).to.equal(1);
@@ -102,12 +77,10 @@ describe('Date Streaks', () => {
     });
 
     it('should report withinCurrentStreak false', () => {
-      var dateInPast = moment()
-        .subtract(3, 'days')
-        .startOf('day')
-        .toString();
+      var today = startOfDay(new Date());
+      var dateInPast = subDays(today, 3);
       var result = summary({
-        dates: [new Date(dateInPast)],
+        dates: [dateInPast],
       });
       expect(result.currentStreak).to.equal(0);
       expect(result.longestStreak).to.equal(1);
@@ -168,12 +141,10 @@ describe('Date Streaks', () => {
 
   describe('Track record', () => {
     it('should report a track record', () => {
-      var today = moment()
-        .startOf('day')
-        .toString();
-      var result = trackRecord({ dates: [new Date(today)] });
+      var today = startOfDay(new Date());
+      var result = trackRecord({ dates: [today] });
 
-      expect(Object.keys(result).includes(today)).to.equal(true);
+      expect(result[today]).to.equal(true);
     });
 
     it('should take a custom length of days', () => {
