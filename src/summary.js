@@ -2,7 +2,7 @@ import { differenceInDays } from 'date-fns';
 import { filterInvalidDates, sortDates, relativeDates } from './helpers';
 
 function summary({ dates = [] }) {
-  const { today, yesterday, tomorrow } = relativeDates();
+  const { today, yesterday } = relativeDates();
   const allDates = filterInvalidDates(dates);
   const sortedDates = sortDates(allDates);
 
