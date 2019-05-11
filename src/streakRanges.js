@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { sortDates } from './helpers';
 import summary from './summary';
 
@@ -17,10 +16,10 @@ function streakRanges({ dates = [] }) {
       allDates.splice(0, streak);
 
       if (days && days.length > 1) {
-        start = moment(days[0]).toString();
-        end = moment(days[days.length - 1]).toString();
+        start = new Date(days[0]);
+        end = new Date(days[days.length - 1]);
       } else {
-        start = moment(days[0]).toString();
+        start = new Date(days[0]);
         end = null;
       }
 
@@ -29,8 +28,8 @@ function streakRanges({ dates = [] }) {
         {
           start,
           end,
-          duration: streak
-        }
+          duration: streak,
+        },
       ];
     }, [])
     .reverse();

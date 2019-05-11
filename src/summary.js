@@ -1,21 +1,22 @@
-import moment from "moment";
-import { filterInvalidDates, sortDates, relativeDates } from "./helpers";
+import { differenceInDays } from 'date-fns';
+import { filterInvalidDates, sortDates, relativeDates } from './helpers';
 
 function summary({ dates = [] }) {
-  const { today, yesterday, tomorrow } = relativeDates();
+  const { today, yesterday } = relativeDates();
   const allDates = filterInvalidDates(dates);
   const sortedDates = sortDates(allDates);
 
   const result = sortedDates.reduce(
     (acc, date, index) => {
-      const first = moment(date);
+      const first = new Date(date);
       const second = sortedDates[index + 1]
-        ? moment(sortedDates[index + 1])
+        ? new Date(sortedDates[index + 1])
         : first;
-      const diff = second.diff(first, "days");
-      const isToday = acc.isToday || moment(date).diff(today) === 0;
-      const isYesterday = acc.isYesterday || moment(date).diff(yesterday) === 0;
-      const isInFuture = acc.isInFuture || moment(today).diff(date) < 0;
+      const diff = differenceInDays(second, first);
+      const isToday = acc.isToday || differenceInDays(date, today) === 0;
+      const isYesterday =
+        acc.isYesterday || differenceInDays(date, yesterday) === 0;
+      const isInFuture = acc.isInFuture || differenceInDays(today, date) < 0;
 
       if (diff === 0) {
         if (isToday) {
@@ -43,7 +44,7 @@ function summary({ dates = [] }) {
             : 0,
         isInFuture,
         isYesterday,
-        isToday
+        isToday,
       };
     },
     {
@@ -54,7 +55,7 @@ function summary({ dates = [] }) {
       withinCurrentStreak: false,
       isInFuture: false,
       isToday: false,
-      isYesterday: false
+      isYesterday: false,
     }
   );
 

@@ -1,19 +1,16 @@
-import moment from 'moment';
+import { startOfDay, subDays } from 'date-fns';
 import { sortDates } from './helpers';
 
 const trackRecord = ({ dates = [], length = 7 }) => {
-  const pastDates = [...Array(length)].map((n, i) =>
-    moment()
-      .subtract(i, 'days')
-      .startOf('day')
+  const pastDates = [...Array(length)].map((_, i) =>
+    startOfDay(subDays(new Date(), i))
   );
-  const sortedDates = sortDates(dates);
-  const momentDates = sortedDates.map(date => moment(date).toString());
+  const sortedDates = sortDates(dates).map(date => startOfDay(date).getTime());
 
-  const result = pastDates.reduce((acc, date) => {
+  const result = pastDates.reduce((acc, pastDate) => {
     acc = {
       ...acc,
-      [moment(date)]: momentDates.includes(date.toString())
+      [pastDate]: sortedDates.includes(pastDate.getTime()),
     };
     return acc;
   }, {});
