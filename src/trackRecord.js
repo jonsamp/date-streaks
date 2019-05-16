@@ -1,4 +1,5 @@
-import { startOfDay, subDays } from 'date-fns';
+import startOfDay from 'date-fns/start_of_day';
+import subDays from 'date-fns/sub_days';
 import { sortDates } from './helpers';
 
 const trackRecord = ({ dates = [], length = 7 }) => {

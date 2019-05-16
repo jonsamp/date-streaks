@@ -1,4 +1,7 @@
-import { startOfDay, subDays, addDays, isValid } from 'date-fns';
+import startOfDay from 'date-fns/start_of_day';
+import subDays from 'date-fns/sub_days';
+import addDays from 'date-fns/add_days';
+import isValid from 'date-fns/is_valid';
 
 export const relativeDates = () => ({
   today: startOfDay(new Date()),

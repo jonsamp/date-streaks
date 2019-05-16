@@ -1,4 +1,4 @@
-import { differenceInDays } from 'date-fns';
+import differenceInDays from 'date-fns/difference_in_days';
 import { filterInvalidDates, sortDates, relativeDates } from './helpers';
 
 function summary({ dates = [] }) {
