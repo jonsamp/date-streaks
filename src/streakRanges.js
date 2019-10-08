@@ -1,7 +1,8 @@
-import { sortDates } from './helpers';
+import { sortDates, getDatesParameter } from './helpers';
 import summary from './summary';
 
-function streakRanges({ dates = [] }) {
+function streakRanges(datesParam = []) {
+  const dates = getDatesParameter(datesParam);
   if (dates.length === 0) {
     return [];
   }

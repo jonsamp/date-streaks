@@ -1,7 +1,8 @@
 import differenceInDays from 'date-fns/difference_in_days';
-import { filterInvalidDates, sortDates, relativeDates } from './helpers';
+import { getDatesParameter, filterInvalidDates, sortDates, relativeDates } from './helpers';
 
-function summary({ dates = [] }) {
+function summary(datesParam = []) {
+  const dates = getDatesParameter(datesParam);
   const { today, yesterday } = relativeDates();
   const allDates = filterInvalidDates(dates);
   const sortedDates = sortDates(allDates);
