@@ -25,3 +25,12 @@ export const sortDates = dates => {
     })
     .reverse();
 };
+
+export const getDatesParameter = (param = {}) => {
+  if(Array.isArray(param)) {
+    return param;
+  } else {
+    const { dates } = param;
+    return dates || [];
+  }
+};

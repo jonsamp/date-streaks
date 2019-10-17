@@ -13,7 +13,7 @@ const dates = [
   new Date('01/04/2018')
 ];
 
-summary({ dates });
+summary({ dates }) // or summary(dates) -> accepts an array as well;
 ```
 
 Returns:
@@ -62,7 +62,7 @@ const dates = [
   new Date('01/06/2018')
 ];
 
-summary({ dates });
+summary({ dates }); // or summary(dates) -> accepts an array as well
 ```
 
 Returns:
@@ -93,7 +93,7 @@ const dates = [
   new Date('01/06/2018')
 ];
 
-streakRanges({ dates });
+streakRanges({ dates }); // or streakRanges(dates) -> accepts an array as well
 ```
 
 Returns:
@@ -134,7 +134,7 @@ const dates = [
 // defaults to 7 days
 const length = 10;
 
-trackRecord({ dates, length });
+trackRecord({ dates, length }); // object filled w/ {dates:Array, length:Number}
 ```
 
 Returns:
