@@ -1,4 +1,4 @@
-var { startOfDay, subDays, addDays } = require('date-fns');
+var { startOfDay, endOfWeek, subDays, addDays } = require('date-fns');
 var expect = require('chai').expect;
 var summary = require('../dist/summary').default;
 var trackRecord = require('../dist/trackRecord').default;
@@ -168,6 +168,25 @@ describe('Date Streaks', () => {
     it('should take a custom length of days', () => {
       var result = trackRecord({ dates: [new Date('3/19/2018')], length: 10 });
       expect(Object.keys(result).length).to.equal(10);
+    });
+
+    it('should take a custom start date', () => {
+      var today = startOfDay(new Date());
+      var result = trackRecord({dates: [today], startDate: endOfWeek(new Date())});
+      expect(result[today]).to.equal(true);
+    });
+
+    it('should take a custom length of days and a custom start date', () => {
+      var today = startOfDay(new Date());
+      var result = trackRecord({dates: [today], length: 10, startDate: endOfWeek(new Date())});
+      expect(result[today]).to.equal(true);
+    });
+
+
+    it('should accept an empty array as input', () => {
+      var result = trackRecord({ dates: [] });
+      debugger;
+      expect(Object.keys(result).length).to.equal(7);
     });
   });
 

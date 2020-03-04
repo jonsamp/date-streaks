@@ -115,42 +115,46 @@ Returns:
 
 ### `trackRecord`
 
-Track record returns a list of dates from today into the past with the provided dates marked as `true`. This is especially helpful for features where you want to show users a calendar of dates where they completed some task.
+Track record returns a list of dates from a date into the past with the provided dates marked as `true`. This is especially helpful for features where you want to show users a calendar of dates where they completed some task. By defaulted 
 
 #### Example
 
-Let's assume today is 1/10/2018.
+Let's assume today is 1/10/2018. But want to get a track record for the current week with end date 1/13/2018.
 
 ```js
 import { trackRecord } from 'date-streaks';
 
 const dates = [
-  new Date('01/01/2018'),
-  new Date('01/02/2018'),
-  new Date('01/08/2018'),
-  new Date('01/09/2018')
+  new Date('01/04/2018'),
+  new Date('01/05/2018'),
+  new Date('01/11/2018'),
+  new Date('01/12/2018')
 ];
 
 // defaults to 7 days
 const length = 10;
 
-trackRecord({ dates, length }); // object filled w/ {dates:Array, length:Number}
+// defaults to today's date
+const startDate = new Date('01/13/2018');
+
+
+trackRecord({ dates, length, startDate }); // object filled w/ {dates:Array, length:Number, startDate: Date}
 ```
 
 Returns:
 
 ```js
 {
-  'Wed Jan 10 2018 00:00:00 GMT-0400': false,
-  'Tue Jan 09 2018 00:00:00 GMT-0400': true,
-  'Mon Jan 08 2018 00:00:00 GMT-0400': true,
-  'Sun Jan 07 2018 00:00:00 GMT-0400': false,
-  'Sat Jan 06 2018 00:00:00 GMT-0400': false,
-  'Fri Jan 05 2018 00:00:00 GMT-0400': false,
-  'Thu Jan 04 2018 00:00:00 GMT-0400': false,
-  'Wed Jan 03 2018 00:00:00 GMT-0400': false,
-  'Tue Jan 02 2018 00:00:00 GMT-0400': true,
-  'Mon Jan 01 2018 00:00:00 GMT-0400': true
+  'Wed Jan 13 2018 00:00:00 GMT-0400': false,
+  'Tue Jan 12 2018 00:00:00 GMT-0400': true,
+  'Mon Jan 11 2018 00:00:00 GMT-0400': true,
+  'Sun Jan 10 2018 00:00:00 GMT-0400': false,
+  'Sat Jan 09 2018 00:00:00 GMT-0400': false,
+  'Fri Jan 08 2018 00:00:00 GMT-0400': false,
+  'Thu Jan 07 2018 00:00:00 GMT-0400': false,
+  'Wed Jan 06 2018 00:00:00 GMT-0400': false,
+  'Tue Jan 05 2018 00:00:00 GMT-0400': true,
+  'Mon Jan 04 2018 00:00:00 GMT-0400': true
 }
 ```
 
