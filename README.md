@@ -119,7 +119,7 @@ Track record returns a list of dates from a specified date into the past with th
 
 #### Example
 
-Let's assume today is 1/10/2018. But want to get a track record for the current week with end date 1/13/2018.
+Let's get a track record for the days preceeding 1/13/2018.
 
 ```js
 import { trackRecord } from 'date-streaks';
