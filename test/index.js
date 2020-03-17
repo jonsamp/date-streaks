@@ -170,7 +170,7 @@ describe('Date Streaks', () => {
       expect(Object.keys(result).length).to.equal(10);
     });
 
-    it('should take a custom start date', () => {
+    it('should take a custom end date', () => {
       var today = startOfDay(new Date());
       var result = trackRecord({dates: [today], startDate: endOfWeek(new Date())});
       expect(result[today]).to.equal(true);
