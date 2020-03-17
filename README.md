@@ -135,7 +135,7 @@ const dates = [
 const length = 10;
 
 // defaults to today's date
-const startDate = new Date('01/13/2018');
+const endDate = new Date('01/13/2018');
 
 
 trackRecord({ dates, length, endDate });
