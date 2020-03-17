@@ -1,10 +1,10 @@
 import startOfDay from 'date-fns/start_of_day';
 import subDays from 'date-fns/sub_days';
-import { sortDates } from './helpers';
+import {sortDates} from './helpers';
 
-const trackRecord = ({ dates = [], length = 7 }) => {
+const trackRecord = ({ dates = [], length = 7, endDate = new Date() }) => {
   const pastDates = [...Array(length)].map((_, i) =>
-    startOfDay(subDays(new Date(), i))
+    startOfDay(subDays(endDate, i))
   );
   const sortedDates = sortDates(dates).map(date => startOfDay(date).getTime());
 
