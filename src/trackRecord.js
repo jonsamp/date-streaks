@@ -4,7 +4,7 @@ import {sortDates} from './helpers';
 
 const trackRecord = ({ dates = [], length = 7, endDate = new Date() }) => {
   const pastDates = [...Array(length)].map((_, i) =>
-    startOfDay(subDays(startDate, i))
+    startOfDay(subDays(endDate, i))
   );
   const sortedDates = sortDates(dates).map(date => startOfDay(date).getTime());
 
