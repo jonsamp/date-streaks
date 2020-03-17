@@ -1,5 +1,7 @@
 # 🗓⚡️ Date Streaks
 
+![build](https://github.com/jonsamp/date-streaks/workflows/build/badge.svg?event=push)
+
 A package to find streaks from a list of dates.
 
 **Quick example:**
