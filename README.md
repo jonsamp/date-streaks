@@ -138,7 +138,7 @@ const length = 10;
 const startDate = new Date('01/13/2018');
 
 
-trackRecord({ dates, length, startDate }); // object filled w/ {dates:Array, length:Number, startDate: Date}
+trackRecord({ dates, length, endDate });
 ```
 
 Returns:
