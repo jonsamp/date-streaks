@@ -115,7 +115,7 @@ Returns:
 
 ### `trackRecord`
 
-Track record returns a list of dates from a date into the past with the provided dates marked as `true`. This is especially helpful for features where you want to show users a calendar of dates where they completed some task. By defaulted 
+Track record returns a list of dates from a specified date into the past with the provided dates marked as `true`. This is especially helpful for features where you want to show users a calendar of dates where they completed some task.
 
 #### Example
 
